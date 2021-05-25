@@ -1,0 +1,61 @@
+:root {
+    --some_height: 50vh;
+}
+
+.task_box {
+    background-color: bisque;
+    width: 50vw;
+    height: fit-content;
+    padding-bottom: 50px;
+    z-index: 0;
+    min-width: 455px;
+    margin-left: max(205px,25vw);
+}
+.outer_box {
+    margin-top: -40px;
+}
+.side-navigation-panel-select-option {
+    min-width: 200px;
+    margin-right: 5px;
+}
+
+.side_bar {
+    width: 20vw;
+    min-width: 198px;
+    position: fixed;
+    background-color: bisque;
+
+}
+.side-navigation-panel {
+    height: 100vh;
+}
+.header {
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: azure;
+}
+.logo {
+    width:100px;
+    height:100px;
+}
+.something {
+    width: 500px;
+}
+
+.add_task {
+    position: relative;
+    width: 40vw;
+    min-width: 400px;
+}
+
+.add_button {
+    position: relative;
+    text-align: center;
+}
+
+.entire_shit {
+    width: 50vw;
+    min-width: 455px;
+}
