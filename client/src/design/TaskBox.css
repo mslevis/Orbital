@@ -11,7 +11,9 @@
     display:flex;
     align-items: center;
     height: 64px;
+    justify-content: space-between;
 }
+
 .logo {
     width:200px;
     height:64px;
@@ -19,10 +21,15 @@
     background-size:200px 180px;
     background-position: 50% 45%;
 }
+
+.logo:active {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.16);
+}
+
 .top_nav {
     display:flex;
     justify-content: space-between;
-    margin-left: 200px;
+    margin-left: -400px;
     
 }
 
@@ -46,6 +53,10 @@
     border-bottom:3px solid #67E277;
 }
 
+.profile_pic {
+    display:block;
+}
+
 /* Body of page*/
 .outer_box {
     background-color: #DBE9EE;
@@ -54,7 +65,7 @@
 }
 /* Task box */
 .task_box {
-    background-color: #4F6D7A;
+    background-color: #6E7481;
     width: 50vw;
     height: fit-content;
     padding-bottom: 50px;
@@ -131,6 +142,7 @@
 th {
     color: white;
     font-family: 'Nunito', sans-serif;
+    cursor: default;
 }
 
 
@@ -216,4 +228,17 @@ th {
 /* Modal content*/
 .modal-content {
     background-color: #DBE9EE;
+    
+}
+
+.modal-content td {
+    background-color: #DBE9EE;
+}
+
+.modal-header {
+    border-bottom: 1px solid black;
+}
+
+.modal-body {
+    border-bottom: 1px solid black;
 }
