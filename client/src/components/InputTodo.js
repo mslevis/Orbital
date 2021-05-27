@@ -16,6 +16,7 @@ const InputToDo = () => {
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(body)
                 });
+                document.querySelector(".add_task").value = "";
             }
         } catch (err) {
             console.error(err.message);
@@ -24,12 +25,13 @@ const InputToDo = () => {
 
     return (
         <Fragment>
-          <form className="d-flex mt-5" onSubmit={onSubmitForm} >
-            <input type="text" 
+          <form className="d-flex" onSubmit={onSubmitForm} >
+            <input type="text"
             className="form-control add_task" 
             placeholder= "Input task"
             onChange={e =>
-            setDescription(e.target.value)}/>
+            setDescription(e.target.value)}
+            autoComplete="off"/>
             
             <button className="btn btn-success add_button"> Add</button>
         </form>

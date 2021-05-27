@@ -33,7 +33,7 @@ app.use(express.json());
 
     app.get("/todos", async(req, res) => {
         try {
-            const allTodos = await pool.query("SELECT * FROM todo");
+            const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id ASC");
             res.json(allTodos.rows);
         } catch (error) {
             console.error(err.message);
@@ -104,10 +104,10 @@ app.use(express.json());
     app.get("/subtasks/:id", async(req, res) => {
         try {
             const {id} = req.params;
-            const allSubtasks = await pool.query("SELECT * FROM subtasks WHERE task_id = $1", [id]);
+            const allSubtasks = await pool.query("SELECT * FROM subtasks WHERE task_id = $1 ORDER BY subtask_id ASC", [id]);
             res.json(allSubtasks.rows);
         } catch (error) {
-            console.error(err.message);
+            console.error(error.message);
         }
     });
 
@@ -120,7 +120,6 @@ app.use(express.json());
             const {description} = req.body;
             const updateTodo = await pool.query("UPDATE subtasks SET description = $1 WHERE subtask_id = $2",
             [description, sid]);
-
             res.json("Subtask was updated!");
         } catch (error) {
             console.error(err.message);

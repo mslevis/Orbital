@@ -8,8 +8,12 @@ import logo from '../Logo_tickaholic.png';
 const Heading = () => {
     return (
         <div className="header">
-            <img src={logo} alt="Logo" className="logo"/>
-            <h1 className="text-center something">Tickaholic</h1>
+            <div className="logo"></div>
+            <nav className="top_nav">
+                <div>Home</div>
+                <div>Learn</div>
+                <div>Settings</div>
+            </nav>
         </div>
     );
 };

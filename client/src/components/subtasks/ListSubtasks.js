@@ -3,33 +3,33 @@ import React, { Fragment, useEffect, useState } from "react";
 const ListSubtasks = ({todo}) => {
 
     const [subtaskList, setSubtaskList] = useState([]);
-    const [subtaskDescrip, setSubtaskDescript] = useState("");
     
     const getSubtasks = async (id) => {
         try {
             // Calls the get ALL subtasks route method
             const response = await fetch(`http://localhost:5000/subtasks/${id}`);
             const jsonData = await response.json();
-            console.log(jsonData);
             setSubtaskList(jsonData);
         } catch (err) {
             console.error(err.message);
         }
     };
 
-    const updateSubtask = async (subtask_id) => {
+    const updateSubtask = async (e,id, subtask_id) => {
         try {
             // Calls the UPDATE subtask route method
-            const tobeSubmitted = { subtaskDescrip };
-            const deleteTodo = await fetch(`http://localhost:5000/subtasks/${todo.todo_id}/${subtask_id}`, {
+            e.preventDefault();
+            const description = document.querySelector(`#edit_subtask${subtask_id}`).value;
+            const submitThis = { description };
+            const updateSubtask = await fetch(`http://localhost:5000/subtasks/${id}/${subtask_id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(tobeSubmitted)
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(submitThis)
             });
         } catch (err) {
             console.error(err.message);
         }
-    }
+    };
 
     const deleteTodo = async (id, subtask_id) => {
         try {
@@ -51,20 +51,18 @@ const ListSubtasks = ({todo}) => {
         {" "}
         <table className="table mt-5 text-center">
             <tbody>
-                {/*<tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr> <input type ='text' className="form-control" value ={description} onChange={e =>
-                            setDescription(e.target.value)}/> 
-                */}
                 {subtaskList.map(subtask => (
                     <tr key={subtask.subtask_id}>
                         <td>
-                            {subtask.description}
-                            {/*(<form onSubmit={updateSubtask(subtask.subtask_id)}>
-                                <input type = 'text' className="form-control" value={subtask.description} onChange={e => setSubtaskDescript(e.target.value)} /> 
-                </form>)*/}
+                            <form onSubmit={e => updateSubtask(e,todo.todo_id, subtask.subtask_id)}>
+                                
+                                <input type = 'text'
+                                id={`edit_subtask${subtask.subtask_id}`}
+                                defaultValue={subtask.description}
+                                
+                                />
+                          
+                            </form>
                             
                         </td>
                         <td>

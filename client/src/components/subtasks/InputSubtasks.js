@@ -17,7 +17,7 @@ const InputSubtasks = ({todo}) => {
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(body)
                 });
-                document.querySelector(".input_subtask").value = "";
+                document.querySelector(`#input_subtask${todo.todo_id}`).value = "";
             }
         } catch (err) {
             console.error(err.message);
@@ -26,8 +26,9 @@ const InputSubtasks = ({todo}) => {
     return (
         <form className="d-flex mt-5" onSubmit={submitSubtask}>
         <input type="text" 
-            className="form-control input_subtask"
-            placeholder="Input subtask" 
+            id={`input_subtask${todo.todo_id}`}
+            className="form-control"
+            placeholder="Input subtask"
             onChange={e =>
             setDescription(e.target.value)}/>
 
@@ -36,39 +37,5 @@ const InputSubtasks = ({todo}) => {
     );
 };
 
-/*
-const InputToDo = () => {
-    const [description, setDescription] = useState("Input task");
-    
-    const onSubmitForm = async e => {
-        // e.preventDefault();
-        try {
-            const body = { description };
-            const response = await fetch("http://localhost:5000/todos", {
-                method: "POST",
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify(body)
-            });
-        } catch (err) {
-            console.error(err.message);
-        }
-    }
 
-    return (
-        <Fragment>
-          <form className="d-flex mt-5" onSubmit={onSubmitForm}>
-            <input type="text" 
-            className="form-control add_task"
-            placeholder = "Input subtask"
-            
-            value={description} 
-            onChange={e =>
-            setDescription(e.target.value)}/>
-            
-            <button className="btn btn-success add_button"> Add</button>
-        </form>
-        </ Fragment>
-    );
-};
-*/
 export default InputSubtasks;

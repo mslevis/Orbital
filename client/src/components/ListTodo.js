@@ -37,23 +37,21 @@ const ListTodo = () => {
     }, [todos]);
     return (<Fragment>
         {" "}
-        <table className="table mt-5 text-center entire_shit">
+        <table className="table mt-5 text-center task_table">
             <thead>
                 <tr>
                     <th scope="col">Description</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Complete Task</th>
+                    <th scope="col">Edit Task</th>
+                    <th scope="col">Delete Task</th>
                 </tr>
             </thead>
             <tbody>
-                {/*<tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr> */}
                 {todos.map(todo => (
+                
                     <tr key={todo.todo_id}>
-                        <td>{todo.description}</td>
+                        <td className="task_name">{todo.description}</td>
+                        <td> <button className="btn btn-success complete_task">COMPLETE!</button></td>
                         <td>
                             <EditTodo todo={todo}/>
                         </td>
