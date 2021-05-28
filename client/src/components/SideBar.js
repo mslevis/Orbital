@@ -1,14 +1,19 @@
+// Imports
 import React, { Fragment } from 'react';
 
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 
+/**
+ * A functional component representing a side bar
+ * @returns JSX of a sidebar component
+ */
 function SideBar() {
     return (
       <div className="side_bar">
         <Navigation
-            // you can use your own router's api to get pathname
-            activeItemId="/management/members"
+            // Path to be added
+            // activeItemId="/management/members"
             onSelect={({itemId}) => {
               // maybe push to the route
             }}
@@ -16,15 +21,11 @@ function SideBar() {
               {
                 title: 'Overview',
                 itemId: '/overview',
-                // you can use your own custom Icon component as well
-                // icon is optional
                 // elemBefore: () => <Icon name="inbox" />,
               },
               {
                 title: 'Calendar',
                 itemId: '/calendar',
-                // you can use your own custom Icon component as well
-                // icon is optional
                 // elemBefore: () => <Icon name="inbox" />,
               },
               {

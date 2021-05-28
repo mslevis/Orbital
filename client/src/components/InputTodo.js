@@ -1,21 +1,32 @@
+// Imports
 import React, { Fragment,useState } from "react";
 
-
+/**
+ * A functional component representing the input of a task
+ * @returns JSX of input field and add button
+ */
 const InputToDo = () => {
+
+    // Description of a task
     const [description, setDescription] = useState("");
     
     const onSubmitForm = async e => {
+        
+        // Prevents page from reloading on form submission
         e.preventDefault();
         try {
             if (description === "") {
-                // do nothing
+                // If task field is empty, do not submit anything
             } else {
+                // Sends a request to create the new task in server
                 const body = { description };
                 const response = await fetch("http://localhost:5000/todos", {
                     method: "POST",
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(body)
                 });
+                
+                // Reset the input field to empty upon successful task submission
                 document.querySelector(".add_task").value = "";
             }
         } catch (err) {

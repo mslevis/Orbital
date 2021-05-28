@@ -1,13 +1,20 @@
+// Imports
 import React, { Fragment, useEffect, useState } from "react";
 
 import EditTodo from "./EditTodo";
 
+/**
+ * A functional component representing a list of main tasks
+ * @returns JSX of main tasks list
+ */
 const ListTodo = () => {
-
+    
+    // Array of main tasks
     const [todos, setTodos] = useState([]);
     
     const getTodos = async() => {
         try {
+            // Calls the GET all tasks route method
             const response = await fetch("http://localhost:5000/todos");
             const jsonData = await response.json();
             setTodos(jsonData);
@@ -18,12 +25,15 @@ const ListTodo = () => {
     
     const deleteTodo = async (id) => {
         try {
+            // Calls the DELETE task route method
             const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
                 method: "DELETE"
             });
 
+            // Sets the array of main tasks to exclude the newly deleted task
             setTodos(todos.filter(todo => todo.todo_id !== id));
 
+            // Calls the DELETE subtasks route method
             const deleteSubtasks = await fetch(`http://localhost:5000/subtasks/${id}`, {
                 method: "DELETE"
             });
@@ -32,9 +42,12 @@ const ListTodo = () => {
             console.error(err.message);
         }
     };
+
+    // Updates whenever main tasks list changes
     useEffect(() => {
         getTodos();
     }, [todos]);
+    
     return (<Fragment>
         {" "}
         <table className="table mt-5 text-center task_table">

@@ -63,6 +63,7 @@
     display: flex;
     justify-content:start;
 }
+
 /* Task box */
 .task_box {
     background-color: #6E7481;
@@ -79,6 +80,7 @@
     0 8px 8px rgba(0,0,0,0.20);
 
 }
+
 /* Input main task */
 .add_task {
     position: relative;

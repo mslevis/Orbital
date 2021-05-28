@@ -1,12 +1,20 @@
+// Imports
 import React, { Fragment, useEffect, useState } from "react";
 
+
+/**
+ * Component that handles listing of subtasks.
+ * @param {object} todo - A main task object.
+ * @returns JSX of listing of subtasks
+ */
 const ListSubtasks = ({todo}) => {
 
+    // List of subtasks pertaining to todo
     const [subtaskList, setSubtaskList] = useState([]);
     
     const getSubtasks = async (id) => {
         try {
-            // Calls the get ALL subtasks route method
+            // Calls the GET all subtasks route method
             const response = await fetch(`http://localhost:5000/subtasks/${id}`);
             const jsonData = await response.json();
             setSubtaskList(jsonData);
@@ -37,15 +45,18 @@ const ListSubtasks = ({todo}) => {
             const deleteTodo = await fetch(`http://localhost:5000/subtasks/${id}/${subtask_id}`, {
                 method: "DELETE"
             });
-            
+            // Update subtaskList to contain subtasks which have not been deleted
             setSubtaskList(subtaskList.filter(subtask => subtask.subtask_id !== subtask_id));
         } catch (err) {
             console.error(err.message);
         }
     };
+
+    // Updates once subtasklist is changed
     useEffect(() => {
         getSubtasks(todo.todo_id);
     }, [subtaskList]);
+    
     return (
     <Fragment>
         {" "}
@@ -55,11 +66,10 @@ const ListSubtasks = ({todo}) => {
                     <tr key={subtask.subtask_id}>
                         <td>
                             <form onSubmit={e => updateSubtask(e,todo.todo_id, subtask.subtask_id)}>
-                                
                                 <input type = 'text'
                                 id={`edit_subtask${subtask.subtask_id}`}
                                 defaultValue={subtask.description}
-                                
+                                onBlur={() => document.getElementById(`edit_subtask${subtask.subtask_id}`).value = subtask.description}
                                 />
                           
                             </form>
