@@ -26,6 +26,8 @@ const EditTodo = ({todo}) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
+            // Sets description on modal header after clicking edit
+            setDescription(description);
         } catch (error) {
             console.error(error.message);
         }
