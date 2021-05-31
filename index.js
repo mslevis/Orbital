@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 
-if (process.env.NODE_ENV === "production") {
+if (p\qrocess.env.NODE_ENV === "production") {
     //server static content
     //npm run build
     app.use(express.static(path.join(__dirname, "./client/build")))
