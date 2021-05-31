@@ -12,8 +12,9 @@ app.use(cors());
 // Use req.body
 app.use(express.json());
 
+console.log("Database_URL", process.env.DATABASE_URL);
 
-if (p\qrocess.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     //server static content
     //npm run build
     app.use(express.static(path.join(__dirname, "./client/build")))
