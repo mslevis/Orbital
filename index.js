@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === "production") {
             [description, id]);
 
             res.json("Todo was updated!");
-        } catch (error) {
+        } catch (err) {
             console.error(err.message);
         }
     });
@@ -86,7 +86,7 @@ if (process.env.NODE_ENV === "production") {
             const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
 
             res.json("Todo was deleted!");
-        } catch (error) {
+        } catch (err) {
             console.error(err.message);
         }
     });
@@ -115,8 +115,8 @@ if (process.env.NODE_ENV === "production") {
             const {id} = req.params;
             const allSubtasks = await pool.query("SELECT * FROM subtasks WHERE task_id = $1 ORDER BY subtask_id ASC", [id]);
             res.json(allSubtasks.rows);
-        } catch (error) {
-            console.error(error.message);
+        } catch (err) {
+            console.error(err.message);
         }
     });
 
@@ -130,7 +130,7 @@ if (process.env.NODE_ENV === "production") {
             const updateTodo = await pool.query("UPDATE subtasks SET description = $1 WHERE subtask_id = $2",
             [description, sid]);
             res.json("Subtask was updated!");
-        } catch (error) {
+        } catch (err) {
             console.error(err.message);
         }
     });
@@ -143,7 +143,7 @@ if (process.env.NODE_ENV === "production") {
             const deleteTodo = await pool.query("DELETE FROM subtasks WHERE subtask_id = $1", [sid]);
 
             res.json("Subtask was deleted!");
-        } catch (error) {
+        } catch (err) {
             console.error(err.message);
         }
     });
@@ -155,8 +155,8 @@ if (process.env.NODE_ENV === "production") {
             const { id } = req.params;
             const deleteAllSubtasks = await pool.query("DELETE FROM subtasks WHERE task_id = $1", [id]);
             res.json("All subtasks deleted!");
-        } catch (error) {
-            console.error(error.message);
+        } catch (err) {
+            console.error(err.message);
         }
     });
 
