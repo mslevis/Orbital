@@ -10,13 +10,12 @@ const devConfig = {
     port: process.env.PG_PORT,
 };
 
-// connect to heroku addon
-const proConfig = {
-    connectionString: process.env.DATABASE_URL
-}
+// connect to heroku psql
+const proConfig = process.env.DATABASE_URL;
 
-const pool = new Pool(
-    process.env.NODE_ENV === "production" ? proConfig : devConfig
-);
+const pool = new Pool({
+    connectionString:
+    process.env.NODE_ENV === "production" ? proConfig : devConfig,
+});
 
 module.exports = pool;
